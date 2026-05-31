@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gessica-maia.vercel.app/sitemap.xml

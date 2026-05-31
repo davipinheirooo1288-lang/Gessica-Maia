@@ -265,7 +265,7 @@ img {
     transform var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
     filter var(--reveal-duration) ease var(--reveal-delay),
     clip-path var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay);
-  will-change: opacity, transform, filter, clip-path;
+  will-change: opacity, transform;
 }
 
 .motion-ready .template-section.is-visible {
@@ -350,6 +350,12 @@ img {
 .schedule-map { left: 46.9%; top: 68%; width: 38.8%; height: 7.2%; }
 
 @media (max-width: 720px) {
+  .template-section {
+    --reveal-filter: none;
+    --reveal-clip: inset(0);
+    --sheen-opacity: 0.28;
+  }
+
   .tap {
     min-width: 34px;
     min-height: 34px;

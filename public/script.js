@@ -12,17 +12,7 @@ if (!reduceMotion.matches && sections.length) {
     }, 1450);
   };
 
-  const revealVisibleSections = () => {
-    sections.forEach((section) => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.08) {
-        revealSection(section);
-      }
-    });
-  };
-
-  requestAnimationFrame(revealVisibleSections);
-  window.addEventListener("load", revealVisibleSections, { once: true });
+  revealSection(sections[0]);
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -42,6 +32,8 @@ if (!reduceMotion.matches && sections.length) {
 
     sections.forEach((section) => observer.observe(section));
   } else {
-    sections.forEach((section) => section.classList.add("is-visible"));
+    sections.forEach((section) => {
+      section.classList.add("is-visible", "reveal-finished");
+    });
   }
 }
