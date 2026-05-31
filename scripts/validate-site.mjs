@@ -1,8 +1,12 @@
 import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
-const html = readFileSync("index.html", "utf8");
-const css = readFileSync("styles.css", "utf8");
-const js = readFileSync("script.js", "utf8");
+const publicDir = "public";
+const publicPath = (path) => join(publicDir, path);
+
+const html = readFileSync(publicPath("index.html"), "utf8");
+const css = readFileSync(publicPath("styles.css"), "utf8");
+const js = readFileSync(publicPath("script.js"), "utf8");
 
 const failures = [];
 const expect = (condition, message) => {
@@ -56,13 +60,13 @@ requiredText.forEach((text) => {
 });
 
 requiredAssets.forEach((asset) => {
-  expect(existsSync(asset), `Asset ausente: ${asset}`);
+  expect(existsSync(publicPath(asset)), `Asset ausente: ${asset}`);
   expect(html.includes(asset) || asset.endsWith("favicon.svg") || asset.endsWith(".jpg"), `Asset não referenciado no HTML: ${asset}`);
 });
 
 const referencedAssets = [...html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g)].map((match) => match[1]);
 referencedAssets.forEach((asset) => {
-  expect(existsSync(asset), `Asset referenciado no HTML não existe: ${asset}`);
+  expect(existsSync(publicPath(asset)), `Asset referenciado no HTML não existe: ${asset}`);
 });
 
 expect((html.match(/class="template-section/g) || []).length === 11, "As 11 telas do template devem estar presentes.");

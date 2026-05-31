@@ -4,10 +4,10 @@ Landing page estatica da Gessica Maia Advocacia, montada para preservar a identi
 
 ## Estrutura
 
-- `index.html`: pagina principal com as 11 secoes do template, SEO semantico e links funcionais.
-- `styles.css`: responsividade, areas clicaveis, animacoes de entrada e hover.
-- `script.js`: controle das animacoes de entrada com `IntersectionObserver`.
-- `assets/`: imagens finais otimizadas usadas pela landing page, favicon e imagem Open Graph.
+- `public/index.html`: pagina principal com as 11 secoes do template, SEO semantico e links funcionais.
+- `public/styles.css`: responsividade, areas clicaveis, animacoes de entrada e hover.
+- `public/script.js`: controle das animacoes de entrada com `IntersectionObserver`.
+- `public/assets/`: imagens finais otimizadas usadas pela landing page, favicon e imagem Open Graph.
 - `docs/template-original/`: PNGs originais usados como referencia visual.
 - `scripts/validate-site.mjs`: validacao local do site.
 
@@ -17,10 +17,16 @@ Landing page estatica da Gessica Maia Advocacia, montada para preservar a identi
 npm run lint
 ```
 
+Para visualizar localmente:
+
+```bash
+python -m http.server 4176 --directory public
+```
+
 ## Publicacao
 
 Projeto estatico. Na Vercel, use a configuracao padrao:
 
 - Framework Preset: `Other`
 - Build Command: `npm run build`
-- Output Directory: `.`
+- Output Directory: `public`
